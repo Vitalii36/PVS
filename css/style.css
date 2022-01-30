@@ -1,0 +1,237 @@
+html,
+body {
+  background: white;
+  width:100%;
+  height:100%;
+  font-size: 62.5%;
+}
+
+header#portfolio-body {
+  display:flex;
+  height:100%;
+  width:100%;
+  padding: 0px 2.0em;
+}
+
+#portfolio-header{
+  margin:auto;
+  text-align:center;
+}
+
+/* on my calculator */
+h1 {
+  font-size: 1.8rem;
+}
+p, div {
+  font-size: 0.2rem;
+  font-weight: 900;
+}
+
+/* On the projector */
+@media screen and (min-width: 70.0rem) {
+  h1 {
+    font-size: 3.6rem;
+  }
+  p, div {
+    font-size:1.2rem;
+  }
+}
+
+#slogan {
+  font-weight: lighter;
+  color: #0D1C32;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-size:2em;
+}
+
+#about {
+  color: #0D1C32;
+  font-size:2em;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+}
+
+h1 {
+  font-weight: bold;
+  color: #0D1C32;
+  text-transform: uppercase;
+  letter-spacing: 13px;
+  margin-bottom: 0px;
+}
+
+
+.links a {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #0D1C32;
+  margin-right: 9px;
+  font-size: .80rem;
+}
+
+main {
+  max-width: 900px;
+}
+
+footer#connect {
+  background-color: #0D1C32;
+  color: #ffffff;
+  position: fixed;
+  padding: 0.5rem;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#footer-links {
+  margin: auto;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.example-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.arrow {
+  position: relative;
+  height: 150px;
+  width: 125px;
+  will-change: opacity, transform;
+  -webkit-transition: all .3s cubic-bezier(.43, .27, .36, .83);
+  transition: all .3s cubic-bezier(.43, .27, .36, .83);
+}
+
+.arrow>.dot {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  height: 25px;
+  width: 25px;
+  will-change: transform;
+  -webkit-transition: -webkit-transform .3s cubic-bezier(.43, .27, .36, .83);
+  transition: -webkit-transform .3s cubic-bezier(.43, .27, .36, .83);
+  transition: transform .3s cubic-bezier(.43, .27, .36, .83);
+  transition: transform .3s cubic-bezier(.43, .27, .36, .83), -webkit-transform .3s cubic-bezier(.43, .27, .36, .83)
+}
+
+.arrow>.dot:after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  display: block;
+  height: 60%;
+  width: 60%;
+  background: rgb(255, 255, 255);
+}
+
+.arrow>.dot.-center:nth-of-type(1) {
+  bottom: 0;
+}
+
+.arrow>.dot.-center:nth-of-type(2) {
+  bottom: 25px;
+}
+
+.arrow>.dot.-center:nth-of-type(3) {
+  bottom: 50px;
+}
+
+.arrow>.dot.-center:nth-of-type(4) {
+  bottom: 75px;
+}
+
+.arrow>.dot.-center:nth-of-type(5) {
+  bottom: 100px;
+}
+
+.arrow>.dot.-center:nth-of-type(6) {
+  bottom: 125px;
+}
+
+.arrow>.dot.-left-1 {
+  bottom: 25px;
+  left: 25px;
+}
+
+.arrow>.dot.-left-2 {
+  bottom: 50px;
+  left: 0;
+}
+
+.arrow>.dot.-right-1 {
+  bottom: 25px;
+  left: 75px;
+}
+
+.arrow>.dot.-right-2 {
+  bottom: 50px;
+  left: 100px;
+}
+
+.arrow.-hidden {
+  opacity: 0;
+  -webkit-transform: translateY(-50px);
+  transform: translateY(-50px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(1) {
+  -webkit-transform: translateX(25px) translateY(25px);
+  transform: translateX(25px) translateY(25px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(2) {
+  -webkit-transform: translateX(-25px) translateY(-75px);
+  transform: translateX(-25px) translateY(-75px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(3) {
+  -webkit-transform: translateX(-50px) translateY(25px);
+  transform: translateX(-50px) translateY(25px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(4) {
+  -webkit-transform: translateX(50px) translateY(-75px);
+  transform: translateX(50px) translateY(-75px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(5) {
+  -webkit-transform: translateX(-50px) translateY(-75px);
+  transform: translateX(-50px) translateY(-75px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(6) {
+  -webkit-transform: translateX(75px) translateY(25px);
+  transform: translateX(75px) translateY(25px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(7) {
+  -webkit-transform: translateX(-50px) translateY(-50px);
+  transform: translateX(-50px) translateY(-50px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(8) {
+  -webkit-transform: translateX(50px) translateY(-25px);
+  transform: translateX(50px) translateY(-25px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(9) {
+  -webkit-transform: translateX(25px) translateY(25px);
+  transform: translateX(25px) translateY(25px);
+}
+
+.arrow.-hidden>.dot:nth-of-type(10) {
+  -webkit-transform: translateX(-25px) translateY(-75px);
+  transform: translateX(-25px) translateY(-75px);
+}
