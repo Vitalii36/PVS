@@ -2,8 +2,7 @@
    display: absolute;
    top: 0px;
    left: 0px;
-   min-height: 1em;
-
+   font-size: 1.0rem;
 }
 
 .word .cursor{
@@ -12,7 +11,6 @@
   background:#FFF;
   margin-left:-0.5em;
   margin-top:-0.1em;
-  height:1.3em;
   vertical-align: middle;
   animation: blinkCursor 1s infinite;
 }
