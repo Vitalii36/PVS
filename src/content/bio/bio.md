@@ -30,7 +30,6 @@ Long-term, I'm building toward a small, high-caliber consulting practice — thr
 - **Claude Code rollout across an engineering org** — 35–55% delivery-speed improvement, 4× faster code review, AI-assisted team scaled from 3 to 12 engineers.
 - **SDD methodology** — Software Design Document standard adopted across the engineering organization.
 - **On-prem infrastructure** — two-server Hetzner architecture: six Odoo instances behind Nginx, two PostgreSQL clusters, Jenkins CI, restic-encrypted off-server backups.
-- **Speaking** — panelist on AI in ERP at Odoo Days UA.
 
 ## Stack
 
