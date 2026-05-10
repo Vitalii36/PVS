@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Page not found" description="The page you were looking for doesn't exist.">
+  <h1>Page not found.</h1>
+  <p>The page you were looking for doesn't exist, or it has been moved.</p>
+  <p>
+    <a href={base}>Home</a> · <a href={`${base}blog/`}>Blog</a>
+  </p>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 1.85rem;
+    margin: 0 0 1rem;
+  }
+  p {
+    margin: 0 0 1rem;
+  }
+</style>

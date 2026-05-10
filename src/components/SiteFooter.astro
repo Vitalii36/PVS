@@ -1,0 +1,42 @@
+---
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <nav aria-label="Secondary">
+    <ul>
+      <li><a href={base}>Home</a></li>
+      <li><a href={`${base}about/`}>About</a></li>
+      <li><a href={`${base}blog/`}>Blog</a></li>
+    </ul>
+  </nav>
+  <p class="meta">© {year} Vitalii Pravdych</p>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--color-rule);
+    padding: 2rem 0 3rem;
+    margin-top: 4rem;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+  nav ul {
+    list-style: none;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav a {
+    text-decoration: none;
+    color: inherit;
+  }
+  nav a:hover {
+    color: var(--color-fg);
+  }
+  .meta {
+    margin: 0;
+  }
+</style>

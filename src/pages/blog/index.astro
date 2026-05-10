@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPostsSorted } from '../../lib/posts';
+
+const allPublished = await getPublishedPostsSorted();
+---
+
+<BaseLayout title="Blog" description="All posts by Vitalii Pravdych — Tech Lead, AI & R&D.">
+  <h1>Blog</h1>
+  <PostList posts={allPublished} emptyMessage="No posts yet — check back soon." />
+</BaseLayout>
+
+<style>
+  h1 {
+    margin: 0 0 1.5rem;
+    font-size: 1.85rem;
+  }
+</style>

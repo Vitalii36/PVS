@@ -1,0 +1,76 @@
+---
+interface Neighbor {
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  prev: Neighbor | null;
+  next: Neighbor | null;
+}
+
+const { prev, next } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+{
+  (prev || next) && (
+    <nav class="prev-next" aria-label="Post navigation">
+      <div class="cell prev">
+        {prev ? (
+          <a href={`${base}blog/${prev.slug}/`}>
+            <span class="label">← Previous</span>
+            <span class="title">{prev.title}</span>
+          </a>
+        ) : (
+          <span class="placeholder" aria-hidden="true" />
+        )}
+      </div>
+      <div class="cell next">
+        {next ? (
+          <a href={`${base}blog/${next.slug}/`}>
+            <span class="label">Next →</span>
+            <span class="title">{next.title}</span>
+          </a>
+        ) : (
+          <span class="placeholder" aria-hidden="true" />
+        )}
+      </div>
+    </nav>
+  )
+}
+
+<style>
+  .prev-next {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 3rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-rule);
+    font-size: 0.95rem;
+  }
+  .cell.next {
+    text-align: right;
+  }
+  .cell a {
+    display: block;
+    text-decoration: none;
+  }
+  .cell a:hover .title {
+    text-decoration: underline;
+  }
+  .label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-bottom: 0.25rem;
+  }
+  .title {
+    display: block;
+    color: var(--color-fg);
+  }
+  .placeholder {
+    display: block;
+  }
+</style>

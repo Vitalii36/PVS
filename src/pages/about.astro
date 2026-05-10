@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAuthor } from '../lib/getAuthor';
+
+const author = await getAuthor();
+const { Content } = await render(author);
+---
+
+<BaseLayout title="About" description={author.data.excerpt}>
+  <header class="about-header">
+    <Image
+      src={author.data.photo}
+      alt={author.data.name}
+      width={120}
+      height={120}
+      class="photo"
+    />
+    <div>
+      <h1>{author.data.name}</h1>
+      <p class="role">{author.data.role}</p>
+      {author.data.location && <p class="location">{author.data.location}</p>}
+    </div>
+  </header>
+
+  <div class="body">
+    <Content />
+  </div>
+
+  <section class="contacts">
+    <h2>Contact</h2>
+    <ul>
+      {author.data.contacts.map((c) => (
+        <li>
+          <a href={c.href}>{c.label}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-header {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+  }
+  .photo {
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .about-header h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.65rem;
+  }
+  .role {
+    margin: 0 0 0.25rem;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+  .location {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+  .contacts {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-rule);
+  }
+  .contacts h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.75rem;
+  }
+  .contacts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  @media (max-width: 540px) {
+    .about-header {
+      flex-direction: column;
+    }
+  }
+</style>

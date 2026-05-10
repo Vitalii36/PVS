@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@import "@fontsource/source-serif-4/400.css";
+@import "@fontsource/source-serif-4/400-italic.css";
+@import "@fontsource/source-serif-4/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/700.css";
+
+@theme {
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Light variant — quiet paper-like surface */
+  --color-bg: #fafafa;
+  --color-fg: #0a0a0a;
+  --color-muted: #6b6b6b;
+  --color-rule: #d4d4d4;
+  --color-code-bg: #f0f0f0;
+
+  --max-w-prose: 38rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme inline {
+    --color-bg: #0a0a0a;
+    --color-fg: #fafafa;
+    --color-muted: #9a9a9a;
+    --color-rule: #2a2a2a;
+    --color-code-bg: #1a1a1a;
+  }
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+p code, li code {
+  background: var(--color-code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+
+pre {
+  background: var(--color-code-bg);
+  padding: 1em 1.25em;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* rehype-pretty-code dual-theme support — show light tokens by default,
+   swap to dark tokens via prefers-color-scheme. The plugin emits both
+   themes as data attributes; we use CSS variables to switch. */
+pre[data-theme="github-light-default"] {
+  display: block;
+}
+pre[data-theme="github-dark-default"] {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  pre[data-theme="github-light-default"] {
+    display: none;
+  }
+  pre[data-theme="github-dark-default"] {
+    display: block;
+  }
+}
+
+figure[data-rehype-pretty-code-figure] {
+  margin: 1.5em 0;
+}
+
+figure[data-rehype-pretty-code-figure] [data-line] {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0.25em;
+}
+
+figure[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background: color-mix(in srgb, var(--color-fg) 8%, transparent);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 2.25rem; margin: 1.5em 0 0.5em; }
+h2 { font-size: 1.5rem; margin: 1.75em 0 0.5em; }
+h3 { font-size: 1.2rem; margin: 1.5em 0 0.5em; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-rule);
+  margin: 2.5em 0;
+}
+
+blockquote {
+  border-left: 2px solid var(--color-rule);
+  margin: 1.5em 0;
+  padding: 0.25em 0 0.25em 1.25em;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95em;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5em 0.75em;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+th {
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}

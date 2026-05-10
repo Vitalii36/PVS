@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { getAuthor } from '../lib/getAuthor';
+import { getPublishedPostsSorted } from '../lib/posts';
+
+const author = await getAuthor();
+const allPublished = await getPublishedPostsSorted();
+const latestThree = allPublished.slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="intro">
+    <Image
+      src={author.data.photo}
+      alt={author.data.name}
+      width={140}
+      height={140}
+      class="photo"
+    />
+    <div class="intro-text">
+      <h1>{author.data.name}</h1>
+      <p class="role">{author.data.role}</p>
+      <p class="excerpt">{author.data.excerpt}</p>
+    </div>
+  </section>
+
+  <section class="latest">
+    <h2>Latest writing</h2>
+    <PostList posts={latestThree} />
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+  }
+  .photo {
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .intro-text {
+    flex: 1;
+  }
+  .intro h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.65rem;
+  }
+  .role {
+    margin: 0 0 0.75rem;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+  .excerpt {
+    margin: 0;
+  }
+  .latest h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 1rem;
+  }
+  @media (max-width: 540px) {
+    .intro {
+      flex-direction: column;
+    }
+  }
+</style>
