@@ -8,7 +8,7 @@ summary: "Three maturity levels of Spec-Driven Development, the Memory-Bank vs S
 
 **Topic:** Spec-Driven Development — taking the approach apart, the tools that exist, and where it actually applies.
 **Date:** April 2026.
-**Context:** A proposal to optimize the BA / QA team on Oblik ERP, plus Birgitta Böckeler's article on martinfowler.com.
+**Context:** An internal proposal to optimize the BA / QA workflow on a mature ERP product, plus Birgitta Böckeler's article on martinfowler.com.
 
 ---
 
@@ -60,18 +60,18 @@ This distinction matters. `constitution.md` is Memory Bank, not a specification.
 
 ---
 
-## How this applies to Oblik ERP
+## How this applies to a brownfield ERP product
 
 **What we take:**
 
 - A Business Requirement template for BA — spec-first, low barrier to entry.
-- `oblik-constitution.md` as Memory Bank — architectural rules, antipatterns, regulatory constraints.
+- A product-level `constitution.md` as Memory Bank — architectural rules, antipatterns, regulatory constraints.
 - AI generates the Technical Spec from the Business Requirement — realistic with the right prompt.
 - Gherkin scenarios as part of the spec — a structured format for QA and AQA.
 
 **What we don't take:**
 
-- Spec-kit as a toolkit — greenfield-shaped, overkill for Oblik ERP.
+- Spec-kit as a toolkit — greenfield-shaped, overkill for a mature ERP product.
 - Spec-as-source — still theoretical for mature ERP products.
 - Auto-generated Playwright tests in CI/CD — the realistic model is AI-assisted testing where a human waits for the result.
 
@@ -81,12 +81,12 @@ This distinction matters. `constitution.md` is Memory Bank, not a specification.
 
 ## The key insight
 
-The most valuable part of SDD for the Oblik team isn't the tools — it's the change in responsibility. BA focuses on **what** (the business logic), AI transforms it into **how** (the technical specification), TL reviews instead of writing. `constitution.md` as Memory Bank guarantees that AI generates inside the architectural rules of the product regardless of which BA wrote the requirement.
+The most valuable part of SDD for our team isn't the tools — it's the change in responsibility. BA focuses on **what** (the business logic), AI transforms it into **how** (the technical specification), TL reviews instead of writing. `constitution.md` as Memory Bank guarantees that AI generates inside the architectural rules of the product regardless of which BA wrote the requirement.
 
 ---
 
 ## Sources
 
 - Birgitta Böckeler, "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl", martinfowler.com, October 2025.
-- Proposal "Optimizing BA & QA: a Spec-Driven approach with AI tools", Mariana Zelinska, April 2026.
-- Audit of the Oblik ERP team's processes, April 2025 — March 2026.
+- An internal proposal on optimizing the BA & QA workflow with a Spec-Driven approach and AI tools, April 2026.
+- A process audit of an ERP product team, April 2025 — March 2026.

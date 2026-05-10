@@ -28,7 +28,7 @@ The previous model was Odoo SH per environment. The drivers for moving off it we
 
 A two-server topology on identical commodity hardware (Hetzner AX42-U), connected over a private L2 link via Hetzner vSwitch, with off-server backups on a Storage Box.
 
-| Component | Server #1 (`tests.bjet.internal`) | Server #2 (`ci.bjet.internal`) |
+| Component | Server #1 (`tests.internal`) | Server #2 (`ci.internal`) |
 |---|---|---|
 | HW | AX42-U, Ryzen 7 PRO 8700GE (8c / 16t), 64 GB DDR5, 2× 512 GB NVMe RAID 1 | identical |
 | Role | 6 Odoo instances + 2 PG clusters + Nginx + observability exporters | Jenkins controller + 2–4 agents + Git mirror cache |

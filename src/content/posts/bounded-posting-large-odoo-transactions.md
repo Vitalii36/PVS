@@ -6,15 +6,15 @@ tags: [odoo, performance, postgres, accounting, memory]
 summary: "A production-blocking landed cost on Odoo SH killed the worker at 1.28 GB RSS. The fix wasn't a different algorithm — it was the same algorithm with explicit lifetime management, in pure ORM, with no queue_job and no raw SQL."
 ---
 
-**Customer:** Gurzuf (production)
-**Module:** `selferp_stock_landed_costs_performance` v17.0.2.0.0
+**Setting:** a manufacturing client running Odoo on the SH Standard tier.
+**Module:** a custom `stock_landed_costs` performance overlay (v17.0.2.0.0).
 **Trigger:** validating one landed cost with 30,600 adjustment lines (~166,800 AML).
 
 ---
 
 ## Context
 
-Validating a single landed cost on Gurzuf's Odoo SH instance killed the worker on memory limit at 1.28 GB RSS, rolled the transaction back, and left the LC stuck in `draft`. Repeatable on every retry. A previous "time-fix" interim release (v17.0.1.0.3 → v17.0.2.0.0) had already shipped — it solved CPU and wall-clock, but exposed a separate memory wall.
+Validating a single landed cost on the customer's Odoo SH instance killed the worker on the memory limit at 1.28 GB RSS, rolled the transaction back, and left the LC stuck in `draft`. Repeatable on every retry. A previous "time-fix" interim release had already shipped — it solved CPU and wall-clock, but exposed a separate memory wall.
 
 ## Problem
 
@@ -27,7 +27,7 @@ Lock contention and PostgreSQL commit size were ruled out, not assumed — verif
 
 ## Solution
 
-Bounded chunks driven by one tunable (`selferp_lc_perf.aml_per_move`, default 30,000). For LC/2026/0064: 166,800 AML / 30k per chunk = **6 chunks** (last partial at 16,800).
+Bounded chunks driven by one tunable (`lc_perf.aml_per_move`, default 30,000). For the affected LC: 166,800 AML / 30k per chunk = **6 chunks** (last partial at 16,800).
 
 Why 30k specifically — derived from constraints, not chosen arbitrarily:
 
@@ -57,7 +57,7 @@ The cut is not "split into chunks." The cut is six things in combination:
 
 | Option | Why rejected |
 |---|---|
-| Raw SQL `INSERT` for AML / SVL | Bypasses Odoo computes, audit trail, multi-company checks. Customer explicit constraint: "Direct SQL i afraide about it". |
+| Raw SQL `INSERT` for AML / SVL | Bypasses Odoo computes, audit trail, multi-company checks. Customer was explicit that they did not want raw SQL anywhere in the path. |
 | `queue_job` async | Pre-existing v17.0.1.0.3 architecture; rejected by customer for operational debt — no real speed win, just hides the bottleneck. Removed entirely. |
 | Raise SH worker memory/time limits | Admin action, costs money. The next-largest LC blows the new ceiling. Documented as escape hatch only. |
 | Staging table for AML | Couples to PostgreSQL specifics (raw SQL again), bypasses ORM compute fields, adds a recovery path for the "what if post fails after staging" case. |
@@ -78,7 +78,7 @@ Pure ORM throughout. No raw SQL. No queue_job. No fallback path retained.
 | Memory warnings in log | dozens | **0** |
 | Per-move balance | n/a | **0.00 on all 6 moves** |
 | New `stock.valuation.layer` rows | 0 (rollback) | **4,200** |
-| Total posted | 0 | **73,457,593.34 UAH** |
+| Total posted | 0 | **~73 M UAH** (balanced across 6 moves) |
 | User-visible UX | queued + manual recovery, or kill | **immediate sync success** |
 
 SQL verification confirmed: 6 `account.move` rows all `state = 'posted'`, `stock_landed_cost.state = 'done'`, debit − credit = 0.00 per chunk × 6, 4,200 SVL rows.
