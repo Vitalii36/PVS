@@ -38,4 +38,4 @@ Python · FastAPI · LlamaIndex · Odoo CE/EE 17+ · PostgreSQL · pgvector · S
 
 ## Beyond the Keyboard
 
-Architectural background. Daily walks with my dog. Morning and evening meditation. Quiet-strength aesthetic. *Elden Ring* — Warrior-Defender, shield and spear. *The Lord of the Rings.*
+Architectural background. Daily walks with my dog. Morning and evening meditation. Quiet-strength aesthetic.
