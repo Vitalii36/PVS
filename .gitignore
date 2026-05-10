@@ -20,6 +20,10 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# source artifacts (decks, drafts) used to derive post content but not shipped
+*.pptx
+*.pdf.draft
+
 # editor
 .vscode/
 .idea/
